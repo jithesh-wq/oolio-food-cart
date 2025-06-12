@@ -1,23 +1,24 @@
-# Use official Go image
-FROM golang:1.22-alpine
+# Use official Go base image
+FROM golang:1.23-alpine
 
-
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
+# Install required packages
+RUN apk add --no-cache git tzdata
+
+# Copy go.mod and go.sum separately to leverage Docker layer caching
 COPY go.mod go.sum ./
 RUN go mod download
 
+# Copy all other files
 COPY . .
 
-# Set to /app/cmd where main.go lives
-WORKDIR /app/cmd
+# Build the binary (assuming main.go is in /cmd)
+RUN go build -o server ./cmd
 
-# Build the binary
-RUN go build -o server
-
-# Expose port 
+# Expose port (optional; match your app port)
 EXPOSE 8080
 
-# Start the server
+# Command to run the app
 CMD ["./server"]

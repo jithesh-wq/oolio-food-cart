@@ -10,7 +10,7 @@ import (
 var Log *zap.SugaredLogger
 
 func Init() error {
-	if err := godotenv.Load("cmd/.env"); err != nil {
+	if err := godotenv.Load("/home/hp-jv/interview/oolio-food-cart/cmd/.env"); err != nil {
 		log.Println("No .env file found, relying on system environment variables")
 	}
 	logger, err := zap.NewProduction()
