@@ -1,6 +1,7 @@
 module github.com/jithesh-wq/oolio-food-cart
 
-go 1.23.9
+go 1.22
+
 
 require (
 	github.com/google/uuid v1.6.0
