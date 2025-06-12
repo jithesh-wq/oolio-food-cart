@@ -1,0 +1,27 @@
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    price NUMERIC(10, 2) NOT NULL,
+    image_thumbnail TEXT NOT NULL,
+    image_mobile TEXT NOT NULL,
+    image_tablet TEXT NOT NULL,
+    image_desktop TEXT NOT NULL
+);
+
+CREATE TABLE orders (
+    id UUID PRIMARY KEY,
+    total_price NUMERIC(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    table_id TEXT NOT NULL,
+    session_id TEXT NOT NULL,
+    payment_status TEXT NOT NULL
+);
+
+CREATE TABLE order_items (
+    id SERIAL PRIMARY KEY,
+    order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
+    product_id VARCHAR REFERENCES products(id),
+    quantity INTEGER NOT NULL,
+    price NUMERIC(10, 2) NOT NULL
+);
