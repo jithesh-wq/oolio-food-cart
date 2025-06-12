@@ -3,6 +3,8 @@ package postgres
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"os"
 	"strconv"
 	"strings"
 
@@ -16,9 +18,15 @@ type Postgres struct {
 	Con *sql.DB
 }
 
-func CreatePostgres(host, port, user, password, database string) (*Postgres, error) {
+func CreatePostgres() (*Postgres, error) {
 	logger.Log.Infoln("Entering : create db connection")
-	conString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, database)
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	conString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", dbHost, dbPort, dbUser, dbPassword, dbName)
+	log.Println(conString)
 	var db, err = sql.Open("postgres", conString)
 	if err != nil {
 		logger.Log.Infoln("Error connecting to db" + err.Error())

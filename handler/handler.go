@@ -2,7 +2,7 @@ package handler
 
 import (
 	"io"
-	"log"
+
 
 	"net/http"
 	"strings"

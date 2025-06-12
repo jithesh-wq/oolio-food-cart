@@ -1,12 +1,18 @@
 package logger
 
 import (
+	"log"
+
+	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 )
 
 var Log *zap.SugaredLogger
 
 func Init() error {
+	if err := godotenv.Load("cmd/.env"); err != nil {
+		log.Println("No .env file found, relying on system environment variables")
+	}
 	logger, err := zap.NewProduction()
 	if err != nil {
 		return err

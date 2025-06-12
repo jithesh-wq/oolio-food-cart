@@ -10,13 +10,7 @@ import (
 	"github.com/jithesh-wq/oolio-food-cart/store"
 )
 
-const (
-	dbhost     = "localhost"
-	dbport     = "5433"
-	dbUser     = "postgres"
-	dbPassword = "mysecretpassword"
-	dbName     = "food_cart"
-)
+
 
 func main() {
 	//initialize the logger
@@ -32,7 +26,7 @@ func main() {
 	logger.Log.Infow("Memory store initialized successfully")
 
 	//initialize the database connection
-	db, err := postgres.CreatePostgres(dbhost, dbport, dbUser, dbPassword, dbName)
+	db, err := postgres.CreatePostgres()
 	if err != nil {
 		log.Fatal(err.Error())
 	}

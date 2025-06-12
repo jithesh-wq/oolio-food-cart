@@ -3,7 +3,6 @@ package service
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 
 	"github.com/jithesh-wq/oolio-food-cart/db"
 	"github.com/jithesh-wq/oolio-food-cart/logger"
