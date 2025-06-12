@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/jithesh-wq/oolio-food-cart/db/postgres"
 	"github.com/jithesh-wq/oolio-food-cart/logger"
@@ -30,6 +31,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	log.Println(os.Getenv("RAILWAY_SERVICE_ID"))
 
 	//create the memory store
 	routes := routes.CreateRoutes(memoryStore, db)
