@@ -25,7 +25,7 @@ func CreatePostgres() (*Postgres, error) {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
-	db_directLink := os.Getenv("DB_DIRECT_LINK")
+	db_directLink := os.Getenv("DATABASE_PUBLIC_URL")
 	conString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", dbHost, dbPort, dbUser, dbPassword, dbName)
 	log.Println(conString)
 	var db, err = sql.Open("postgres", db_directLink)
