@@ -11,8 +11,6 @@ import (
 	"github.com/jithesh-wq/oolio-food-cart/store"
 )
 
-
-
 func main() {
 	//initialize the logger
 	if err := logger.Init(); err != nil {
@@ -31,7 +29,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	log.Println(os.Getenv("RAILWAY_SERVICE_ID"))
+	log.Println("railway env" + os.Getenv("RAILWAY_SERVICE_ID"))
 
 	//create the memory store
 	routes := routes.CreateRoutes(memoryStore, db)
