@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/jithesh-wq/oolio-food-cart/db/postgres"
 	"github.com/jithesh-wq/oolio-food-cart/logger"
@@ -29,13 +28,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	log.Println("railway env" + os.Getenv("RAILWAY_SERVICE_ID"))
-	log.Println("=== Environment Debug ===")
-	log.Printf("All environment variables:")
-	for _, env := range os.Environ() {
-		log.Println(env)
-	}
-	log.Println("=== End Environment Debug ===")
 
 	//create the memory store
 	routes := routes.CreateRoutes(memoryStore, db)

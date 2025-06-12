@@ -25,9 +25,10 @@ func CreatePostgres() (*Postgres, error) {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
+	db_directLink := os.Getenv("DB_DIRECT_LINK")
 	conString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", dbHost, dbPort, dbUser, dbPassword, dbName)
 	log.Println(conString)
-	var db, err = sql.Open("postgres", conString)
+	var db, err = sql.Open("postgres", db_directLink)
 	if err != nil {
 		logger.Log.Infoln("Error connecting to db" + err.Error())
 		return nil, err
