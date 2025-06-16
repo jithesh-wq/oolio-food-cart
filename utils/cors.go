@@ -1,8 +1,12 @@
 package utils
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
 func WithCORS(h http.Handler) http.Handler {
+	log.Println("inside cors filter")
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST")
