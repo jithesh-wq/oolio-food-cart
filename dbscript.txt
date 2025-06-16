@@ -21,7 +21,7 @@ CREATE TABLE orders (
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
     order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
-    product_id VARCHAR REFERENCES products(id),
+    product_id INTEGER REFERENCES products(id),
     quantity INTEGER NOT NULL,
     price NUMERIC(10, 2) NOT NULL
 );
