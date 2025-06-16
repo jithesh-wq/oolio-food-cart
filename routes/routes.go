@@ -20,7 +20,7 @@ func CreateRoutes(memoryStore *store.MemoryStore, db db.DbOperations) *mux.Route
 
 	removeTableSessionService := service.CreateRemoveTableSessionService(db, memoryStore)
 	removeTableSessionHandler := handler.CreateApiHandler(removeTableSessionService, memoryStore)
-	r.HandleFunc("/checkout-table-session", removeTableSessionHandler.HandleRequest).Methods("GET")
+	r.HandleFunc("/checkout-table-session", removeTableSessionHandler.HandleRequest).Methods("POST")
 
 	getProductsService := service.CreateGetProductsService(db, memoryStore)
 	getProductsHandler := handler.CreateApiHandler(getProductsService, memoryStore)
