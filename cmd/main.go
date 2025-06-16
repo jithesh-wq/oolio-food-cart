@@ -8,6 +8,7 @@ import (
 	"github.com/jithesh-wq/oolio-food-cart/logger"
 	"github.com/jithesh-wq/oolio-food-cart/routes"
 	"github.com/jithesh-wq/oolio-food-cart/store"
+	"github.com/jithesh-wq/oolio-food-cart/utils"
 )
 
 func main() {
@@ -30,8 +31,7 @@ func main() {
 	}
 
 	//create the memory store
-	routes := routes.CreateRoutes(memoryStore, db)
-
+	routes := utils.WithCORS(routes.CreateRoutes(memoryStore, db))
 	//add server configs and start server
 	server := &http.Server{
 		Addr:    ":8080",
